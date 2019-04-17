@@ -126,7 +126,7 @@ app.post("/api/vaga/consulta", function (req, res) {
                     // ))
                         
                 
-            }))
+            
         }
     })
 });
