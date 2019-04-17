@@ -98,7 +98,19 @@ app.post("/api/vaga/consulta", function (req, res) {
                 //     ))
                 // }
                 "fulfillmentText":[
-                    {"teste": 1},{"teste": 2}
+                    {
+                        "platform": "google",
+                        "suggestions": [
+                          {
+                            "title": "Chip One"
+                          },
+                          {
+                            "title": "Chip Two"
+                          }
+                        ],
+                        "type": "suggestion_chips"
+                      }
+                    
                 ]
             }))
         }
