@@ -84,23 +84,38 @@ app.post("/api/vaga/consulta", function (req, res) {
         } else {
             //res.json(todos);
             console.log(todos)
+            let array = []
+            todos.map(v => {
+                var string = `Cargo: ${v.cargo} 
+                      Nível: ${v.nivel} 
+                      Cidade: ${v.cidade}
+                      Empresa: ${v.nomeEmpresa}
+                      Salário: R$${v.salario.toFixed(2)} 
+                      Link da vaga: ${v.link},`
+                array.push(string)
+            })
+            let resp = array.toString()
+            console.log(resp)
             res.setHeader('Content-Type','application/json')
             res.send(JSON.stringify({
-                "fulfillmentText": 
-                todos.map(v => {
-                    console.log(v)
-                    var array = []
-                    var string = `Cargo: ${v.cargo} 
-                         Nível: ${v.nivel} 
-                         Cidade: ${v.cidade}
-                         Empresa: ${v.nomeEmpresa}
-                         Salário: R$${v.salario.toFixed(2)} 
-                         Link da vaga: ${v.link},`
-                    array.push(string)
-                   let teste =  array.toString().replace(',', '\n')
-                   console.log(teste)
-                    return teste
-                })          
+                "fulfillmentText":resp
+            }))
+            // res.send(JSON.stringify({
+            //     "fulfillmentText": 
+            //     todos.map(v => {
+            //         console.log(v)
+            //         var array = []
+            //         var string = `Cargo: ${v.cargo} 
+            //              Nível: ${v.nivel} 
+            //              Cidade: ${v.cidade}
+            //              Empresa: ${v.nomeEmpresa}
+            //              Salário: R$${v.salario.toFixed(2)} 
+            //              Link da vaga: ${v.link},`
+            //         array.push(string)
+            //        var teste =  array.toString().replace(',', '\n')
+            //        console.log(teste)
+            //         return teste
+            //     })          
                     // todos.map(v=>(
                     //     `Cargo: ${v.cargo} 
                     //     Nível: ${v.nivel} 
