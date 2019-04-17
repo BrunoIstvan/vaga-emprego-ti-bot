@@ -86,9 +86,24 @@ app.post("/api/vaga/consulta", function (req, res) {
             console.log(todos)
             res.setHeader('Content-Type','application/json')
             res.send(JSON.stringify({
-                "fulfillmentMessages":[
-                    {"teste": 1}, {"teste": 2}
-                ] 
+                "fulfillmentText": "estamos testando essa porra",
+                    "fulfillmentMessages": [
+                        {
+                        "object(Message)":"alguma coisa"
+                        }
+                    ],
+                    "source": string,
+                    "payload": {
+                        "object(Message)":"alguma coisa"
+                    },
+                    "outputContexts": [
+                    {
+                        "object(Message)":"alguma coisa"
+                    }
+                    ],
+                    "followupEventInput": {
+                        "object(Message)":"alguma coisa"
+                    },
 
                     // todos.map(v=>(
                     //     `Cargo: ${v.cargo} 
