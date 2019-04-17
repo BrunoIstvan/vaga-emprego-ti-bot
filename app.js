@@ -88,10 +88,10 @@ app.post("/api/vaga/consulta", function (req, res) {
             res.send(JSON.stringify({
                 "fulfillmentText": todos.map(v=>(
                     `Cargo: ${v.cargo} 
-                    Nivel: ${v.nivel} 
+                    Nível: ${v.nivel} 
                     Cidade: ${v.cidade}
-                    Empresa: ${v.empresa}
-                    Salário: ${v.salario} 
+                    Empresa: ${v.nomeEmpresa}
+                    Salário: R$${v.salario.toFixed(2)} 
                     Link da vaga: ${v.link}`
                 ))
             }))
