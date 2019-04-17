@@ -88,6 +88,7 @@ app.post("/api/vaga/consulta", function (req, res) {
             res.send(JSON.stringify({
                 "fulfillmentText": 
                 todos.map(v => {
+                    console.log(v)
                     var array = []
                     var string = `Cargo: ${v.cargo} 
                          Nível: ${v.nivel} 
@@ -96,8 +97,9 @@ app.post("/api/vaga/consulta", function (req, res) {
                          Salário: R$${v.salario.toFixed(2)} 
                          Link da vaga: ${v.link},`
                     array.push(string)
-                    array.toString().replace(',', '\n')
-                    return array
+                   let teste =  array.toString().replace(',', '\n')
+                   console.log(teste)
+                    return teste
                 })          
                     // todos.map(v=>(
                     //     `Cargo: ${v.cargo} 
