@@ -84,7 +84,7 @@ app.post("/api/vaga/consulta", function (req, res) {
         } else {
             //res.json(todos);
             console.log(todos)
-            let array = []
+            var array = []
             todos.map(v => {
                 var string = `Cargo: ${v.cargo} 
                       Nível: ${v.nivel} 
@@ -94,7 +94,7 @@ app.post("/api/vaga/consulta", function (req, res) {
                       Link da vaga: ${v.link},`
                 array.push(string)
             })
-            let resp = array.toString()
+            var resp = array.toString()
             console.log(resp)
             res.setHeader('Content-Type','application/json')
             res.send(JSON.stringify({
