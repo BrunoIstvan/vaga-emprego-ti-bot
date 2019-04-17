@@ -94,7 +94,7 @@ app.post("/api/vaga/consulta", function (req, res) {
                       Link da vaga: ${v.link}`
                 array.push(string)
             })
-            var resp = array.toString().replace("/,/g", "\n\n")
+            var resp = array.toString().replace(/,/g, "\n\n")
             console.log(resp)
             res.setHeader('Content-Type','application/json')
             res.send(JSON.stringify({
