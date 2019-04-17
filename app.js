@@ -86,18 +86,20 @@ app.post("/api/vaga/consulta", function (req, res) {
             console.log(todos)
             res.setHeader('Content-Type','application/json')
             res.send(JSON.stringify({
-                "fulfillmentText": 
-                {
-                    "vagas":todos.map(v=>(
-                        `Cargo: ${v.cargo} 
-                        Nível: ${v.nivel} 
-                        Cidade: ${v.cidade}
-                        Empresa: ${v.nomeEmpresa}
-                        Salário: R$${v.salario.toFixed(2)} 
-                        Link da vaga: ${v.link}`
-                    ))
-                }
-                
+                // "fulfillmentText": 
+                // {
+                //     "vagas":todos.map(v=>(
+                //         `Cargo: ${v.cargo} 
+                //         Nível: ${v.nivel} 
+                //         Cidade: ${v.cidade}
+                //         Empresa: ${v.nomeEmpresa}
+                //         Salário: R$${v.salario.toFixed(2)} 
+                //         Link da vaga: ${v.link}`
+                //     ))
+                // }
+                "fulfillmentText":[
+                    {"teste": 1},{"teste": 2}
+                ]
             }))
         }
     })
