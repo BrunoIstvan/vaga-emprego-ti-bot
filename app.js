@@ -91,10 +91,10 @@ app.post("/api/vaga/consulta", function (req, res) {
                       Cidade: ${v.cidade}
                       Empresa: ${v.nomeEmpresa}
                       Salário: R$${v.salario.toFixed(2)} 
-                      Link da vaga: ${v.link},`
+                      Link da vaga: ${v.link}`
                 array.push(string)
             })
-            var resp = array.toString().replace("/,/g", "<br>")
+            var resp = array.toString().replace("/,/g", "\n\n")
             console.log(resp)
             res.setHeader('Content-Type','application/json')
             res.send(JSON.stringify({
