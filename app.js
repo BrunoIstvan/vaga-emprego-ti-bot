@@ -86,28 +86,28 @@ app.post("/api/vaga/consulta", function (req, res) {
             console.log(todos)
             res.setHeader('Content-Type','application/json')
             res.send(JSON.stringify({
-                "fulfillmentText": 
+                "fulfillmentMessages": 
                 
-                    // todos.map(v=>(
-                    //     `Cargo: ${v.cargo} 
-                    //     Nível: ${v.nivel} 
-                    //     Cidade: ${v.cidade}
-                    //     Empresa: ${v.nomeEmpresa}
-                    //     Salário: R$${v.salario.toFixed(2)} 
-                    //     Link da vaga: ${v.link}`
-                    // ))
-                    todos.map(v => {
-                        var array = []
-                        var string = `Cargo: ${v.cargo} 
-                             Nível: ${v.nivel} 
-                             Cidade: ${v.cidade}
-                             Empresa: ${v.nomeEmpresa}
-                             Salário: R$${v.salario.toFixed(2)} 
-                             Link da vaga: ${v.link},`
-                        array.push(string)
-                        array.replace(',', '\n')
-                        return array
-                    })              
+                    todos.map(v=>(
+                        `Cargo: ${v.cargo} 
+                        Nível: ${v.nivel} 
+                        Cidade: ${v.cidade}
+                        Empresa: ${v.nomeEmpresa}
+                        Salário: R$${v.salario.toFixed(2)} 
+                        Link da vaga: ${v.link}`
+                    ))
+                    // todos.map(v => {
+                    //     var array = []
+                    //     var string = `Cargo: ${v.cargo} 
+                    //          Nível: ${v.nivel} 
+                    //          Cidade: ${v.cidade}
+                    //          Empresa: ${v.nomeEmpresa}
+                    //          Salário: R$${v.salario.toFixed(2)} 
+                    //          Link da vaga: ${v.link},`
+                    //     array.push(string)
+                    //     array.toString().replace(',', '\n')
+                    //     return array
+                    // })              
                 
             }))
         }
