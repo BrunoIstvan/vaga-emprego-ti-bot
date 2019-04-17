@@ -97,8 +97,8 @@ app.post("/api/vaga/consulta", function (req, res) {
                     //     Link da vaga: ${v.link}`
                     // ))
                     todos.map(v => {
-                        let array = []
-                        let string = `Cargo: ${v.cargo} 
+                        var array = []
+                        var string = `Cargo: ${v.cargo} 
                              Nível: ${v.nivel} 
                              Cidade: ${v.cidade}
                              Empresa: ${v.nomeEmpresa}
