@@ -86,32 +86,29 @@ app.post("/api/vaga/consulta", function (req, res) {
             console.log(todos)
             res.setHeader('Content-Type','application/json')
             res.send(JSON.stringify({
-                // "fulfillmentText": 
-                // {
-                //     "vagas":todos.map(v=>(
-                //         `Cargo: ${v.cargo} 
-                //         Nível: ${v.nivel} 
-                //         Cidade: ${v.cidade}
-                //         Empresa: ${v.nomeEmpresa}
-                //         Salário: R$${v.salario.toFixed(2)} 
-                //         Link da vaga: ${v.link}`
-                //     ))
-                // }
-                "messages":[
-                    {
-                        "platform": "google",
-                        "suggestions": [
-                          {
-                            "title": "Chip One"
-                          },
-                          {
-                            "title": "Chip Two"
-                          }
-                        ],
-                        "type": "suggestion_chips"
-                      }
-                    
-                ]
+                "fulfillmentText": 
+                
+                    // todos.map(v=>(
+                    //     `Cargo: ${v.cargo} 
+                    //     Nível: ${v.nivel} 
+                    //     Cidade: ${v.cidade}
+                    //     Empresa: ${v.nomeEmpresa}
+                    //     Salário: R$${v.salario.toFixed(2)} 
+                    //     Link da vaga: ${v.link}`
+                    // ))
+                    todos.map(v => {
+                        let array = []
+                        let string = `Cargo: ${v.cargo} 
+                             Nível: ${v.nivel} 
+                             Cidade: ${v.cidade}
+                             Empresa: ${v.nomeEmpresa}
+                             Salário: R$${v.salario.toFixed(2)} 
+                             Link da vaga: ${v.link},`
+                        array.push(string)
+                        array.replace(',', '\n')
+                        return array
+                    })              
+                
             }))
         }
     })
