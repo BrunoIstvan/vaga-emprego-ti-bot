@@ -97,7 +97,7 @@ app.post("/api/vaga/consulta", function (req, res) {
                 //         Link da vaga: ${v.link}`
                 //     ))
                 // }
-                "fulfillmentText":[
+                "messages":[
                     {
                         "platform": "google",
                         "suggestions": [
