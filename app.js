@@ -17,9 +17,10 @@ mongo.connect(mongoaddr);
 var taskListSchema = mongo.Schema({
     cargo: { type: String },
     nivel: { type: String },
-    salario: { type: Number },
+    salario: { type: String },
     cidade: { type: String },
     nomeEmpresa: { type: String },
+    formaContratacao: { type: String },
     link: { type: String },
 
 });
@@ -43,8 +44,15 @@ app.get("/api/vagas", function (req, res) {
     })
 });
 
+// DELETE - Apaga um registro pelo id
+app.delete("/api/vaga/:id", function(req, res) {
+    Model.findByIdAndRemove(req.params.id, req.body, function (err, post) {
+        if (err) return next(err);
+        res.json(post);
+    });
+});
 
-//POST - Adiciona um registro
+// POST - Adiciona um registro
 app.post("/api/vaga", function (req, res) {  
     console.log(req.body)
     var register = new Model({
@@ -53,6 +61,7 @@ app.post("/api/vaga", function (req, res) {
         'salario': req.body.salario,
         'cidade': req.body.cidade,
         'nomeEmpresa': req.body.nomeEmpresa,
+        'formaContratacao': req.body.formaContratacao,
         'link': req.body.link,
 
     });
@@ -70,14 +79,22 @@ app.post("/api/vaga", function (req, res) {
 });
 
 
-//POST - Adiciona um registro
+//POST - Consulta um registro
 app.post("/api/vaga/consulta", function (req, res) {  
+
+    var cargo = req.body.queryResult.parameters.cargo;
+    var nivel = req.body.queryResult.parameters.nivel;
+    var cidade = req.body.queryResult.parameters.geo_city;
+
     var busca = {
-        'cargo': req.body.queryResult.parameters.cargo,
-        'nivel': req.body.queryResult.parameters.nivel,
-        'cidade': req.body.queryResult.parameters.geo_city,
+        'cargo': { $regex: '.*' + cargo + '.*' },
+        'nivel': { $regex: '.*' + nivel + '.*' },
+        'cidade': { $regex: '.*' + cidade + '.*' }
     };
-    console.log(busca)
+    if(busca.nivel === '' || busca.nivel == undefined) {
+        delete busca.nivel;
+    }
+    console.log(busca);
     Model.find(busca, function (err, todos) {
         if (err) {
             res.json(err);
@@ -86,11 +103,11 @@ app.post("/api/vaga/consulta", function (req, res) {
             console.log(todos)
             var array = []
             todos.map(v => {
-                var string = `Cargo: ${v.cargo} 
+                var string = `Cargo: ${v.cargo} (${v.formaContratacao})
                       Nível: ${v.nivel} 
                       Cidade: ${v.cidade}
                       Empresa: ${v.nomeEmpresa}
-                      Salário: R$${v.salario.toFixed(2)} 
+                      Salário: ${v.salario} 
                       Link da vaga: ${v.link}`
                 array.push(string)
             })
@@ -130,10 +147,6 @@ app.post("/api/vaga/consulta", function (req, res) {
         }
     })
 });
-
-
-
-
 
 //PUT - Atualiza um registro
 app.put("/api/vaga/:id", function (req, res) {
